@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1628681740,
+        "narHash": "sha256-0YN5ObEBBZoCrDeJ7gY4L0NaQPl1gkcJH2HoQ+5yc/U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "911b8a569cd44d3e3f2e8c39f5e1162506e7941c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pymilter": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "narHash": "sha256-TOZtZo2pI8JRlJ6no1sIDaxqiCsENhLXQUmw1jWITT4=",
+        "path": "/home/jlucas/SON/Dev/pymilter",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/jlucas/SON/Dev/pymilter",
+        "type": "path"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": [
+          "pymilter",
+          "nixpkgs"
+        ],
+        "pymilter": "pymilter"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

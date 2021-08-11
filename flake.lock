@@ -20,13 +20,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "narHash": "sha256-TOZtZo2pI8JRlJ6no1sIDaxqiCsENhLXQUmw1jWITT4=",
-        "path": "/home/jlucas/SON/Dev/pymilter",
-        "type": "path"
+        "lastModified": 1628687580,
+        "narHash": "sha256-Ydau7oZu3fLIw73KD7EHQKGBVItep5b8+wrKsivKCKg=",
+        "owner": "JosephLucas",
+        "repo": "pymilter",
+        "rev": "6842c5ddf1e7193e2f97e195e88181a60177ba85",
+        "type": "github"
       },
       "original": {
-        "path": "/home/jlucas/SON/Dev/pymilter",
-        "type": "path"
+        "owner": "JosephLucas",
+        "repo": "pymilter",
+        "type": "github"
       }
     },
     "root": {

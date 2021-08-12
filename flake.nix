@@ -6,16 +6,19 @@
     nixpkgs.follows = "pymilter/nixpkgs"; # to be sure to use the same nixpkgs as its dependency
   };
 
-  outputs = { self, nixpkgs, pymilter}: let pkgs = nixpkgs.legacyPackages.x86_64-linux; in {
-    packages.x86_64-linux.pgp-milter = (import ./default.nix {
-      nixpkgs=nixpkgs; 
-      pymilter=pymilter.packages.x86_64-linux.pymilter;
-    });
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.pgp-milter;
-    checks.x86_64-linux.pgp-milter = self.packages.x86_64-linux.pgp-milter;
-    devShell.x86_64-linux = pkgs.mkShell {
-      inputsFrom = builtins.attrValues self.inputs;
-      packages = [ self.packages.x86_64-linux.pgp-milter ];
-    };
+  outputs = { self, nixpkgs, pymilter}:
+    let 
+      supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];
+      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [
+        pymilter.overlay 
+        self.overlay 
+      ]; });
+    in {
+      overlay = final: prev: { pgp-milter = (import ./default.nix { pkgs = final; }); };
+      packages = forAllSystems (system: { inherit (nixpkgsFor.${system}) pgp-milter; });
+      defaultPackage = forAllSystems (system: self.packages.${system}.pgp-milter);
+      checks = forAllSystems (system: { inherit (self.packages.${system}) pgp-milter; });
+      devShell = forAllSystems (system: self.packages.${system}.pgp-milter.override { inShell = true; });
   };
 }

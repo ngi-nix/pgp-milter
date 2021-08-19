@@ -2,7 +2,7 @@
   description = "Mail filter to automatically PGP encrypt messages";
 
   inputs = {
-    pymilter.url = "github:JosephLucas/pymilter";
+    pymilter.url = "github:ngi-nix/pymilter";
     nixpkgs.follows = "pymilter/nixpkgs"; # to be sure to use the same nixpkgs as its dependency
   };
 

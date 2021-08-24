@@ -10,7 +10,7 @@
 buildPythonPackage {
   pname = "pgp-milter";
   version = "0.1.dev0";
-  src = ./.;
+  src = if inShell then null else ./.;
   propagatedBuildInputs = [
     pymilter
     python-gnupg

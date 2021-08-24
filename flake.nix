@@ -2,8 +2,7 @@
   description = "Mail filter to automatically PGP encrypt messages";
 
   inputs = {
-    # pymilter-default-nix.url = "github:ngi-nix/pymilter"; # to get the default.nix 
-    pymilter-default-nix.url = "github:ngi-nix/pymilter/WIP"; # to get the default.nix 
+    pymilter-default-nix.url = "github:ngi-nix/pymilter";
     pymilter-1_0_4 = {
       url = "github:ngi-nix/pymilter/pymilter-1.0.4";
       flake = false;

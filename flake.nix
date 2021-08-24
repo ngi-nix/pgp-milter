@@ -2,20 +2,37 @@
   description = "Mail filter to automatically PGP encrypt messages";
 
   inputs = {
-    pymilter.url = "github:ngi-nix/pymilter";
-    nixpkgs.follows = "pymilter/nixpkgs"; # to be sure to use the same nixpkgs as its dependency
+    # pymilter-default-nix.url = "github:ngi-nix/pymilter"; # to get the default.nix 
+    pymilter-default-nix.url = "github:ngi-nix/pymilter/WIP"; # to get the default.nix 
+    pymilter-1_0_4 = {
+      url = "github:ngi-nix/pymilter/pymilter-1.0.4";
+      flake = false;
+    };
+    nixpkgs.follows = "pymilter-default-nix/nixpkgs";
   };
 
-  outputs = { self, nixpkgs, pymilter}:
-    let 
+  outputs = { self, nixpkgs, pymilter-default-nix, pymilter-1_0_4 }:
+    let
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [
-        pymilter.overlay 
-        self.overlay 
+        
+        (final: prev: {
+          pymilter = final.callPackage "${pymilter-default-nix.outPath}/default.nix" {
+            # We change the source code of the derivation
+            src = pymilter-1_0_4.outPath;
+            version = "1.0.4";
+            inherit (final.python3Packages) pydns bsddb3 buildPythonPackage;
+          };})
+          
+        self.overlay
+
       ]; });
     in {
-      overlay = final: prev: { pgp-milter = (import ./default.nix { pkgs = final; }); };
+      overlay = final: prev: { pgp-milter = (import ./default.nix {
+          inherit (final) lib pymilter;
+          inherit (final.python3Packages) pytest coverage python-gnupg buildPythonPackage;
+        }); };
       packages = forAllSystems (system: { inherit (nixpkgsFor.${system}) pgp-milter; });
       defaultPackage = forAllSystems (system: self.packages.${system}.pgp-milter);
       # FIXME: check also for x86_64-darwin as soon as Hydra will check darwin derivations

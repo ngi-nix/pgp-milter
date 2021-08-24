@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1628681740,
-        "narHash": "sha256-0YN5ObEBBZoCrDeJ7gY4L0NaQPl1gkcJH2HoQ+5yc/U=",
+        "lastModified": 1629834317,
+        "narHash": "sha256-NSsIlBnrNbN6wj6getlB/jqNFm9W7CQml8/vrfj0MaU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "911b8a569cd44d3e3f2e8c39f5e1162506e7941c",
+        "rev": "adc409264c528b93cd4fb018825ff5ec62b17568",
         "type": "github"
       },
       "original": {
@@ -37,16 +37,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1629833269,
-        "narHash": "sha256-PtEblKCe6S8oYJ9I3geyudMQ6o0fmXifWtcDDLAwrrA=",
+        "lastModified": 1629836021,
+        "narHash": "sha256-bSrP1k6QBnNWoBcZYtLDrwreOttjBlOYNrazPELzbrA=",
         "owner": "ngi-nix",
         "repo": "pymilter",
-        "rev": "e4556a11579b6753530d2618d47a4c7441539388",
+        "rev": "4f4b70f3a69f16e28d2c9640e32831b9c3a3b566",
         "type": "github"
       },
       "original": {
         "owner": "ngi-nix",
-        "ref": "WIP",
         "repo": "pymilter",
         "type": "github"
       }

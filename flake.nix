@@ -2,30 +2,18 @@
   description = "Mail filter to automatically PGP encrypt messages";
 
   inputs = {
-    pymilter-default-nix.url = "github:ngi-nix/pymilter";
-    pymilter-1_0_4 = {
-      url = "github:ngi-nix/pymilter/pymilter-1.0.4";
-      flake = false;
-    };
-    nixpkgs.follows = "pymilter-default-nix/nixpkgs";
+    # as explained in requirement.txt, we want the version 1.0.4 of pymilter
+    pymilter.url = "github:ngi-nix/pymilter/pymilter-1.0.4";
+    nixpkgs.follows = "pymilter/nixpkgs";
   };
 
-  outputs = { self, nixpkgs, pymilter-default-nix, pymilter-1_0_4 }:
+  outputs = { self, nixpkgs, pymilter }:
     let
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [
-        
-        (final: prev: {
-          pymilter = final.callPackage "${pymilter-default-nix.outPath}/default.nix" {
-            # We change the source code of the derivation
-            src = pymilter-1_0_4.outPath;
-            version = "1.0.4";
-            inherit (final.python3Packages) pydns bsddb3 buildPythonPackage;
-          };})
-          
+        pymilter.outputs.overlay
         self.overlay
-
       ]; });
     in {
       overlay = final: prev: { pgp-milter = (import ./default.nix {

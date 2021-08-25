@@ -20,7 +20,7 @@ buildPythonPackage {
     pytest
   ];
   checkPhase = ''
-    pytest -k 'not test_eom_leaves_headercontent'
+    pytest
   '';
   doCheck = true;
   pythonImportCheck = [ "pgp_milter" ];

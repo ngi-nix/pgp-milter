@@ -24,6 +24,6 @@
       defaultPackage = forAllSystems (system: self.packages.${system}.pgp-milter);
       # FIXME: check also for x86_64-darwin as soon as Hydra will check darwin derivations
       checks.x86_64-linux.pgp-milter = self.packages.x86_64-linux.pgp-milter;
-      devShell = forAllSystems (system: self.packages.${system}.pgp-milter.override { inShell = true; });
+      devShell = self.defaultPackage;
   };
 }

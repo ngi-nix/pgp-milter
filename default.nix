@@ -5,12 +5,11 @@
   coverage,
   python-gnupg,
   pymilter,
-  inShell ? false
 }:
 buildPythonPackage {
   pname = "pgp-milter";
   version = "0.1.dev0";
-  src = if inShell then null else ./.;
+  src = ./.;
   propagatedBuildInputs = [
     pymilter
     python-gnupg

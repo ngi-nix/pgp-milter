@@ -20,11 +20,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1629899919,
-        "narHash": "sha256-yvLvse6xS5yLsAqChlMFqN22qz3If+WbfPqxkEeN6k0=",
+        "lastModified": 1630577324,
+        "narHash": "sha256-sNPhC4vHuGhI9i1tIIi/vCtWLUtp2U5cmAxN6r0C9Ro=",
         "owner": "ngi-nix",
         "repo": "pymilter",
-        "rev": "6b0a5140117c41a77e6616fb5520d976f296ce94",
+        "rev": "c6eeb16c86225729aec4ba9cad41a6ab2c525f9e",
         "type": "github"
       },
       "original": {

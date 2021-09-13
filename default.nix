@@ -24,8 +24,8 @@ buildPythonPackage {
   doCheck = true;
   pythonImportCheck = [ "pgp_milter" ];
   meta = {
-    homepage = https://github.com/ulif/pgp-milter;
+    homepage = "https://github.com/ulif/pgp-milter";
     description = "Mail filter to automatically PGP encrypt messages";
-    license = lib.licenses.agpl3Only;
+    license = lib.licenses.gpl3Plus;
   };
 }
